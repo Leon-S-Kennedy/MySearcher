@@ -1,0 +1,156 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+    overflow: hidden;
+}
+
+.container {
+    z-index: 1;
+
+    height: 60px;
+    background-color: rgba(255, 255, 255, .7);
+    padding: 0 8px;
+    border-radius: 30px;
+    backdrop-filter: blur(4px);
+    box-shadow: 0 0 5px 1px gray;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.time-box {
+    z-index: 1;
+    position: absolute;
+    background-color: transparent;
+    height: 40px;
+    top: 40%;
+    line-height: 40px;
+    font-size: 40px;
+    text-align: center;
+    color: #fff;
+    text-shadow: 0 0 4px #000;
+}
+
+.search-box {
+    width: 200px;
+    transition: all .3s ease-in-out;
+}
+
+.container:hover .search-box,
+.container:focus-within .search-box {
+    width: 440px;
+}
+
+.container .item {
+    margin: auto 20px;
+    font-size: 20px;
+    opacity: 0;
+    transition-delay: .3s;
+    transition: all .3s ease;
+}
+
+.container:focus-within .item {
+    opacity: 1;
+}
+
+.container .search-submit {
+    display: inline-block;
+    height: 40px;
+    width: 40px;
+    text-align: center;
+    line-height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.container .search-submit:hover {
+    background-color: rgba(255, 255, 255, .6);
+}
+
+.container .search-btn {
+    width: 100%;
+    border: none;
+    outline: none;
+    text-align: center;
+    background: inherit;
+    font-size: 20px;
+    transition: all .5s ease-in-out;
+}
+
+.container .search-btn::placeholder {
+    color: rgba(230, 230, 230, .9);
+    text-shadow: 0 0 4px #000;
+    transition: all .2s ease-in-out;
+}
+
+.container:hover .search-btn::placeholder,
+.container:focus-within .search-btn::placeholder {
+    color: rgba(119, 119, 119, .9);
+    text-shadow: 0 0 4px #f3f3f3;
+}
+
+.background {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    background-image: url(./bg.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    object-fit: cover;
+
+    transition: all .2s ease-in-out;
+}
+
+.container:focus-within ~ .background {
+    filter: blur(20px);
+    transform: scale(1.2);
+}
+
+.poem {
+    z-index: 1;
+    position: absolute;
+    top: 70%;
+    color: #ddd;
+    text-shadow: 0 0 2px #000;
+    opacity: 0;
+    transition: all .2s ease-in-out;
+    padding: 12px 32px;
+    border-radius: 8px;
+    line-height: 2;
+}
+
+.poem .author {
+    opacity: 0;
+    text-align: center;
+    transition: all .2s ease-in-out;
+}
+
+.container:focus-within ~ .poem {
+    opacity: 1;
+}
+
+.container:focus-within ~ .poem:hover {
+    background-color: rgba(255, 255, 255, .3);
+    opacity: 1;
+}
+
+.container:focus-within ~ .poem:hover .author {
+    opacity: 1;
+}

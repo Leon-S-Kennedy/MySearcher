@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.libowen.searcher.web.SearchMapper">
+    <resultMap id="DocumentResultMap" type="com.libowen.searcher.web.Document">
+        <id property="docId" column="docid"/>
+        <result property="title" column="title"/>
+        <result property="url" column="url"/>
+        <result property="content" column="content"/>
+    </resultMap>
+    <select id="query" resultMap="DocumentResultMap">
+        select ii.docid,title,url,content
+        from inverted_indexes ii
+        join forward_indexes fi
+        on ii.docid=fi.docid
+        where word=#{word}
+        order by weight desc
+        limit ${limit}
+        offset ${offset}
+    </select>
+
+    <resultMap id="DocumentWithWeightResultMap" type="com.libowen.searcher.web.DocumentWithWeight">
+        <id property="docId" column="docid"/>
+        <result property="title" column="title"/>
+        <result property="url" column="url"/>
+        <result property="content" column="content"/>
+        <result property="weight" column="weight"/>
+    </resultMap>
+
+    <select id="queryWithWeight" resultMap="DocumentWithWeightResultMap">
+        select ii.docid,title,url,content,weight
+        from inverted_indexes ii
+                 join forward_indexes fi
+                      on ii.docid=fi.docid
+        where word=#{word}
+        order by weight desc
+            limit ${limit}
+        offset ${offset}
+    </select>
+
+</mapper>

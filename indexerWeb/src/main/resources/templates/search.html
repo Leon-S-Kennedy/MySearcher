@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-hans" xmlns:th="https://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title th:text="${query} + ' - 千度一下'"></title>
+        <link rel="stylesheet" href="/query.css">
+    </head>
+    <body>
+        <!-- th:xxx 是 thymeleaf 的语法 -->
+        <!--    <div th:text="'你好 ' + ${name} + ' 世界'"></div>-->
+        <div class="header">
+            <div class="brand"><a href="/">千度一下</a></div>
+            <form class="input-shell" method="get" action="/web">
+                <input type="text" name="query" th:value="${query}">
+                <button>千度一下</button>
+            </form>
+        </div>
+
+        <div class="result">
+            <!-- th:utext 和 th:text 的区别：要不要进行 HTML 转义 -->
+            <!--        <div th:text="'<span>你好 th:text</span>'"></div>-->
+            <!--        <div th:utext="'<span>你好 th:utext</span>'"></div>-->
+
+            <div class="result-item" th:each="doc : ${docList}">
+                <a th:href="${doc.url}" th:text="${doc.title}"></a>
+                <div class="desc" th:utext="${doc.desc}"></div>
+                <div class="url" th:text="${doc.url}"></div>
+            </div>
+        </div>
+
+        <!--    <div class="result">-->
+        <!--        <div th:each="item : ${testList}">-->
+        <!--            <span th:text="${item}"></span>-->
+        <!--        </div>-->
+        <!--    </div>-->
+
+        <!-- 一直上一页可能走到 page <= 0 的情况 -->
+        <!-- 一直下一页可能走到 page > 上限的情况 -->
+        <div class="pagination">
+            <a th:href="'/web?query=' + ${query} + '&page=' + ${page - 1}">上一页</a>
+            <a th:href="'/web?query=' + ${query} + '&page=' + ${page + 1}">下一页</a>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,99 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.header {
+    width: 100%;
+    height: 80px;
+    position: fixed;    /* 固定不动 */
+    left: 0;
+    top: 0;
+    background-color: #eee;
+    border-bottom: 1px solid #ccc;
+    padding-left: 120px;
+
+    display: flex;
+    align-items: center;
+}
+
+.brand {
+    margin-right: 120px;
+}
+
+.brand a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.input-shell {
+    width: 800px;
+    height: 52px;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+}
+
+.input-shell:focus,     /* :focus : 该元素 获得焦点 */
+.input-shell:hover {    /* :hover : 鼠标滑过该元素 */
+    border: 1px solid #888;
+}
+
+.input-shell input {
+    border: none;
+    outline: none;
+    width: 600px;
+    padding-left: 8px;
+    font-size: 22px;
+}
+
+.input-shell button {
+    border: none;
+    outline: none;
+    width: 200px;
+    border-left: 1px solid #ccc;
+}
+
+.result {
+    margin-top: 88px;
+    width: 100%;
+    padding-left: 120px;
+}
+
+.result-item {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    align-items: start;
+}
+
+.result-item a {
+    font-size: 22px;
+    font-weight: 700;
+    color: rgb(42, 107, 205);
+}
+
+.result-item .desc {
+    font-size: 18px;
+}
+
+.result-item .url {
+    font-size: 18px;
+    color: rgb(0, 128, 0);
+}
+
+.result-item .desc i {
+    color: red;
+    font-style: normal;
+}
+
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-bottom: 12px;
+}

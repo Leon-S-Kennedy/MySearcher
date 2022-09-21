@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/searcher?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: libowen
+mybatis:
+  mapper-locations: classpath:mapper/search-mapper.xml
+logging:
+  level:
+    com.libowen.searcher.web: debug

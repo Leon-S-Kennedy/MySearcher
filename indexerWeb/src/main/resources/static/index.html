@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>千度一下</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <i class="fa-brands fa-windows item"></i>
+        <div class="search-box">
+            <input type="text" class="search-btn" placeholder="搜索">
+        </div>
+        <i class="fa-solid fa-magnifying-glass item search-submit"></i>
+    </div>
+    <div class="time-box"></div>
+    <div class="poem">
+        <p>「今夜不知何处宿，平沙万里绝人烟。」</p>
+        <p class="author">—— 碛中作</p>
+    </div>
+
+    <div class="background"></div>
+
+    <script src="https://kit.fontawesome.com/44e73cd2d1.js" crossorigin="anonymous"></script>
+    <script>
+        const search = (query) => {
+            window.open('/web?query=' + encodeURIComponent(query), '_blank')
+        }
+
+        const oSearch = document.querySelector('.search-btn')
+        oSearch.addEventListener('focus', () => {oSearch.placeholder = ''})
+        oSearch.addEventListener('blur', () => {oSearch.placeholder = '搜索'})
+        oSearch.addEventListener('keydown', (event) => {
+            if (event.keyCode === 13 && oSearch.value.trim().length !== 0) {
+                search(oSearch.value.trim())
+                oSearch.value = ''
+                oSearch.blur()
+            }
+        })
+
+        document.querySelector('.search-submit').addEventListener('click', () => {
+            if (oSearch.value.trim().length !== 0) {
+                search(oSearch.value.trim())
+                oSearch.value = ''
+            }
+        })
+
+        const oTimeBox = document.querySelector('.time-box')
+        const updateTime = () => {
+            let now = new Date()
+            let hour = now.getHours()
+            let minute = now.getMinutes()
+            if (hour < 10) {
+                hour = '0' + hour
+            }
+            if (minute < 10) {
+                minute = '0' + minute
+            }
+
+            oTimeBox.textContent = `${hour}:${minute}`
+
+            let second = now.getSeconds()
+            let r = 60 - second
+            setTimeout(updateTime, r * 1000)
+        }
+        updateTime()
+    </script>
+</body>
+</html>
