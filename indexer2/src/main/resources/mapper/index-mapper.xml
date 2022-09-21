@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.libowen.searcher.indexer.mapper.IndexDatabaseMapper">
+    <insert id="batchInsertForwardIndexes" useGeneratedKeys="true" keyProperty="docId" keyColumn="docid">
+        insert into forward_indexes (title,url,content) values
+        <foreach collection="list" item="doc" separator=", ">
+            (#{doc.title},#{doc.url},#{doc.content})
+        </foreach>
+    </insert>
+
+    <insert id="batchInsertInvertedIndexes">
+        insert into inverted_indexes (word,docid,weight) values
+        <foreach collection="list" item="record" separator=", ">
+            (#{record.word},#{record.docId},#{record.weight})
+        </foreach>
+    </insert>
+</mapper>

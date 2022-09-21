@@ -1,0 +1,18 @@
+spring:
+  main:
+    log-startup-info: false
+    banner-mode: off
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/searcher?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: libowen
+logging:
+  level:
+    com.libowen.searcher: debug
+    com.libowen.searcher.indexer.mapper: error
+searcher:
+  indexer:
+    doc-root-path: D:\Downloads\Java项目+spring\docs\api
+    url-pre-fix: https://docs.oracle.com/javase/8/docs/api/
+mybatis:
+  mapper-locations: classpath:mapper/index-mapper.xml
